@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess The Number</title>
+  <style>
+    /* Page background */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Game box */
+    #game-box {
+      width: 400px;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    #game-box:hover {
+      transform: scale(1.03);
+    }
+
+    /* Title */
+    h1 {
+      margin: 0 0 20px;
+      font-size: 28px;
+      color: #333;
+    }
+
+    /* Input */
+    input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 2px solid #4facfe;
+      outline: none;
+      width: 60%;
+      transition: 0.3s;
+    }
+
+    input[type="number"]:focus {
+      border-color: #00c6ff;
+      box-shadow: 0 0 8px rgba(0, 198, 255, 0.4);
+    }
+
+    /* Button */
+    button {
+      margin-left: 10px;
+      padding: 10px 18px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #00f2fe, #4facfe);
+      transform: scale(1.05);
+    }
+
+    /* Feedback messages */
+    #feedback {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    #attempts {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-box">
+    <h1>🎯 Guess The Number 🎯</h1>
+    <input type="number" id="number" placeholder="Enter your guess">
+    <button id="guessbutton">Guess</button>
+    <p id="feedback"></p>
+    <p id="attempts"></p>
+  </div>
+
+  <script>
+    let secretNumber = Math.floor(Math.random() * 100) + 1; // Random 1-100
+    let attempts = 0;
+
+    function checkguess() {
+      const guessvalue = document.getElementById('number').value;
+      const feedback = document.getElementById('feedback');
+      const attemptsDisplay = document.getElementById('attempts');
+      const guess = parseInt(guessvalue);
+
+      if (!guessvalue) {
+        feedback.textContent = "⚠️ Please enter a number!";
+        feedback.style.color = "red";
+      } 
+      else if (guess === secretNumber) {
+        attempts++;
+        feedback.textContent = `🎉 Hooray!!! You guessed it right in ${attempts} attempts!`;
+        feedback.style.color = "green";
+      } 
+      else if (guess > secretNumber) {
+        attempts++;
+        feedback.textContent = `📉 Too high! Try again.`;
+        feedback.style.color = "orange";
+      } 
+      else {
+        attempts++;
+        feedback.textContent = `📈 Too low! Try again.`;
+        feedback.style.color = "orange";
+      }
+
+      attemptsDisplay.textContent = `Total attempts: ${attempts}`;
+    }
+
+    document.getElementById('guessbutton').addEventListener('click', checkguess);
+  </script>
+</body>
+</html>
