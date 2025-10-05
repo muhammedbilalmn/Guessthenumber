@@ -1,4 +1,4 @@
-# 🎯 Guess The Number – A Fun Mini Game
+# 🎯 Guess The Number – A Fun Mini Game  https://guessthenumber.tiiny.site
 
 This is a simple and interactive number guessing game built with **HTML, CSS, and JavaScript**.  
 The computer randomly selects a number between **1 and 100**, and the player has to guess it in as few attempts as possible.
